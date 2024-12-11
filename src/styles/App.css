@@ -1,0 +1,94 @@
+body {
+    background-image: url('C:\Users\nazbt\Desktop\RickandMortyTable\Rick-and-Morty-Api\images\Adsız tasarım (1).jpg');
+    background-color: #000000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white; 
+}
+
+#root {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Başlık */
+@font-face {
+    font-family: 'RickAndMorty';
+    src: url('../get_schwifty.ttf') format('truetype'); 
+}
+
+h1 {
+    position: fixed; /* Başlığı sabitler */
+    top: -30px; /* Sayfanın üst kısmından 10px mesafe */
+    left: 50%; /* Yatayda ortalamak için */
+    transform: translateX(-50%); /* Ortalamayı tamamlar */
+    text-align: center;
+    color: #00b8e6;
+    font-size: 4rem; 
+    font-family: 'RickAndMorty', sans-serif,bold; 
+    font-weight: normal;
+    text-shadow: 6px 6px 6px rgba(255, 203, 0, 50.0); 
+  
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+
+    font-weight: bold;
+}
+
+td {
+    color: white;
+}
+
+
+tr:hover td {
+    cursor: pointer;
+}
+
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-size: 16px;
+
+}
+::placeholder {
+    color: white; 
+
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+
+th, td {
+    color: white;
+    text-shadow: none; 
+}

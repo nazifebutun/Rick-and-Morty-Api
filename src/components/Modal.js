@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./Modal.css";
+import "../styles/Modal.css";
 
 const Modal = ({ character, onClose }) => {
-    const [episodes, setEpisodes] = useState([]); 
+    const [episodes, setEpisodes] = useState([]); // Bölüm isimlerini tutar
 
-
+    // Episode URL'lerinden bölüm bilgilerini çek
     useEffect(() => {
         const fetchEpisodes = async () => {
             if (character && character.episode.length > 0) {
                 try {
-                    const fetchPromises = character.episode.map((url) => fetch(url).then((res) => res.json()));
+                    const fetchPromises = character.episode.map((url) =>
+                        fetch(url).then((res) => res.json())
+                    );
                     const results = await Promise.all(fetchPromises);
-                    setEpisodes(results.map((episode) => `Episode ${episode.id}: ${episode.name}`));
+                    setEpisodes(results.map((episode) => episode.name)); // Sadece bölüm isimlerini al
                 } catch (error) {
                     console.error("Failed to fetch episodes:", error);
                 }
@@ -21,7 +23,7 @@ const Modal = ({ character, onClose }) => {
         fetchEpisodes();
     }, [character]);
 
-    if (!character) return null; 
+    if (!character) return null; // Eğer karakter seçili değilse, modal gösterilmez
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -39,8 +41,10 @@ const Modal = ({ character, onClose }) => {
                 {episodes.length > 0 ? (
                     <ul>
                         {episodes.map((episode, index) => (
-                        <li key={index}>{episode}</li>
-                    ))}
+                            <li key={index}>
+                                Episode {index + 1}: {episode}
+                            </li>
+                        ))}
                     </ul>
                 ) : (
                     <p>Loading episodes...</p>
