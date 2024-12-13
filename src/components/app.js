@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "./Modal"; 
 import "../styles/App.css";
-
+import rickgun from '../images/rickgun.png';
+import mortygun from '../images/mortygun.png';
 const App = () => {
     const [allCharacters, setAllCharacters] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1); 
@@ -11,7 +12,7 @@ const App = () => {
     const [selectedCharacter, setSelectedCharacter] = useState(null); 
     const [filter, setFilter] = useState(""); 
 
-    const charactersPerPage = 10; 
+    const charactersPerPage = 8; 
 
     
     useEffect(() => {
@@ -96,6 +97,9 @@ const App = () => {
                         borderRadius: "4px", 
                         color: "white", 
                         border: "1px solid #ffffff",
+                        fontFamily: "monospace",
+                        fontSize: "15px",
+                        textShadow: "3px 3px 3px rgba(255, 203, 0, 50.0)",
                     }}
                 />
                 <i 
@@ -124,41 +128,98 @@ const App = () => {
             ) : currentCharacters.length > 0 ? (
                 <>
                     {}
-                    <div style={{ marginTop: "200px", display: "grid", gridTemplateColumns: "repeat(5, 1fr", gap:"20px"}}>
+                    <div style={{ marginTop: "250px",marginBottom:"40px", display: "grid", gridTemplateColumns: "repeat(4, 1fr", gap:"20px"}}>
                         {currentCharacters.map((char) => (
                             <div
                                 key={char.id}
                                 style={{
                                     border: "1px solid #ddd",
                                     borderRadius: "8px",
-                                    padding: "10px",
                                     textAlign: "center",
                                     cursor: "pointer",
-                                    backgroundColor: "rgba(0, 184, 230, 0.3)",
+                                    backgroundColor: "rgba(5, 88, 109)",
                                     boxShadow: "10px 4px 10px rgba(0, 0, 0, 0.8)",
                                 }}
                                 onClick={() => setSelectedCharacter(char)}
                             >
-                                <h3>{char.name}</h3>
-                                <p>Status: {char.status}</p>
-                                <p>Species: {char.species}</p>
-                                <img src={char.image} alt={char.name} style={{ width: "100px", height: "100px" }} />
+                                <h3 className="custom-heading">{char.name}</h3>
+                                <p style={{
+                                    fontFamily: "monospace",
+                                    fontSize: "15px",
+                                    textShadow: "3px 3px 3px rgba(255, 203, 0, 50.0)", 
+                                    margin: "5px",
+                                }}>
+                                    Status: {char.status}
+                                </p>
+                                <p style={{
+                                    fontFamily: "monospace",
+                                    fontSize: "15px",
+                                    textShadow: "3px 3px 3px rgba(255, 203, 0, 50.0)",
+                                    margin: "10px",
+                                }}>
+                                    Species: {char.species}
+                                </p>
+                                <img src={char.image} alt={char.name} style={{ width: "120px", height: "120px" }} />
                             </div>
                         ))}
                     </div>
 
                     {}
-                    <div style={{ marginTop: "20px", display: "flex", justifyContent: "center", gap: "10px" }}>
-                        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                            Previous
+                    
+                    <div style={{ marginTop: "50px", display: "flex", justifyContent: "center", gap: "10px" }}>
+                    
+                        <button 
+                            onClick={handlePreviousPage} 
+                            disabled={currentPage === 1} 
+                            style={{
+                                background: "none",  
+                                border: "none",      
+                                cursor: "pointer"    
+                            }}
+                        >
+                            <img 
+                                src={rickgun} 
+                                alt="Previous"
+                                style={{
+                                    width: "60px",  
+                                    height: "60px",
+                                }}
+                            />
                         </button>
-                        <p>
+                        
+                        <p
+                            style={{
+                                fontFamily: "monospace",
+                                fontSize: "19px",
+                                color: "white",
+                                textShadow: "3px 3px 3px rgba(255, 203, 0, 50.0)",
+                            }}
+
+                        >
                             Page {currentPage} of {totalPages}
+                            
                         </p>
-                        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                            Next
+
+                        <button 
+                            onClick={handleNextPage} 
+                            disabled={currentPage === totalPages} 
+                            style={{
+                                background: "none",  
+                                border: "none",      
+                                cursor: "pointer"   
+                            }}
+                        >
+                            <img 
+                                src={mortygun} 
+                                alt="Next"
+                                style={{
+                                    width: "60px",  
+                                    height: "60px", 
+                                }}
+                            />
                         </button>
                     </div>
+
                 </>
             ) : (
                 <p>No characters found.</p>

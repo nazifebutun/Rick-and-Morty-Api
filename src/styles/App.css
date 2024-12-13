@@ -1,5 +1,5 @@
 body {
-    background-image: url('C:\Users\nazbt\Desktop\RickandMortyTable\Rick-and-Morty-Api\images\Adsız tasarım (1).jpg');
+    background-image: url('../images/background.jpg');
     background-color: #000000;
     background-size: cover;
     background-position: center;
@@ -38,6 +38,15 @@ h1 {
     font-weight: normal;
     text-shadow: 6px 6px 6px rgba(255, 203, 0, 50.0); 
   
+}
+
+.custom-heading {
+    font-family: 'monospace';
+    font-size: 25px;
+    color: #ffffff;                   
+    text-align: center;               
+    text-shadow: 2px 2px 3px rgba(255, 203, 0, 50.0);
+    margin: 15px;
 }
 
 
