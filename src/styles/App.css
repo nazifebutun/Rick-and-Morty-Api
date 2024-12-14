@@ -27,77 +27,138 @@ body {
 }
 
 h1 {
-    position: fixed; /* Başlığı sabitler */
-    top: -30px; /* Sayfanın üst kısmından 10px mesafe */
-    left: 50%; /* Yatayda ortalamak için */
-    transform: translateX(-50%); /* Ortalamayı tamamlar */
+    position: fixed;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     color: #00b8e6;
     font-size: 4rem; 
-    font-family: 'RickAndMorty', sans-serif,bold; 
+    font-family: 'RickAndMorty', sans-serif, bold; 
     font-weight: normal;
-    text-shadow: 6px 6px 6px rgba(255, 203, 0, 50.0); 
-  
+    text-shadow: rgba(50, 205, 50, 0.4) 3px 3px,
+    rgba(0, 128, 0, 0.3) 6px 6px,
+    rgba(50, 205, 50, 0.2) 9px 9px,
+    rgba(0, 128, 0, 0.1) 12px 12px,
+    rgba(50, 205, 50, 0.05) 15px 15px; 
 }
 
-.custom-heading {
-    font-family: 'monospace';
-    font-size: 25px;
-    color: #ffffff;                   
-    text-align: center;               
-    text-shadow: 2px 2px 3px rgba(255, 203, 0, 50.0);
-    margin: 15px;
-}
-
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    color: white; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-th, td {
-    padding: 12px;
-    text-align: center;
-}
-
-th {
-
-    font-weight: bold;
-}
-
-td {
-    color: white;
-}
-
-
-tr:hover td {
-    cursor: pointer;
-}
-
-
-input {
-    display: block;
-    margin: 10px auto;
-    padding: 8px;
-    width: 300px;
-    border: 1px solid #ffffff;
-    border-radius: 4px;
-    font-size: 16px;
-
-}
-::placeholder {
-    color: white; 
-
-}
-
-h1 {
+.filter-container {
+    position: fixed;
+    top: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
     margin-bottom: 20px;
 }
 
-
-th, td {
+.filter-input {
+    display: block;
+    padding: 8px 35px 8px 8px;
+    width: 100%;
+    background-color: rgba(5, 88, 109, 0.8);
+    border: none;
+    border-radius: 4px;
     color: white;
-    text-shadow: none; 
+    border: 1px solid #ffffff;
+    font-family: monospace;
+    font-size: 15px;
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
 }
+
+.filter-input::placeholder {
+    color: white;
+}
+
+/* Karakter Grid */
+.character-grid {
+    margin-top: 180px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
+}
+
+.character-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(5, 88, 109, 0.8);
+    margin: 5px;
+    box-shadow: rgba(50, 205, 50, 0.4) 5px 5px,
+        rgba(0, 128, 0, 0.3) 10px 10px,
+        rgba(50, 205, 50, 0.2) 15px 15px,
+        rgba(0, 128, 0, 0.1) 20px 20px,
+        rgba(50, 205, 50, 0.05) 25px 25px;
+}
+
+.character-image {
+    width: 120px;
+    height: 120px;
+}
+
+.character-status,
+.character-species {
+    font-family: monospace;
+    font-size: 15px;
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
+    margin: 10px;
+}
+
+/* Sayfa Kontrol */
+.pagination-container {
+    position: fixed; /* Konumu sabitler */
+    bottom: 20px; /* Sayfanın altından 20px yukarıda */
+    left: 50%; /* Yatayda ortalar */
+    transform: translateX(-50%); /* Ortalamayı tamamlar */
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination-button {
+    background-color: rgba(5, 88, 109, 0.8);
+    border: 1.5px solid #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 60px;
+    height: 35px;
+    color: white;
+    font-family: monospace;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: rgba(50, 205, 50, 0.4) 2px 2px,
+        rgba(0, 128, 0, 0.3) 4px 4px;
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
+}
+
+.pagination-info {
+    font-family: monospace;
+    font-size: 16px;
+    color: white;
+    text-shadow: rgba(50, 205, 50, 0.4) 2px 2px, rgba(0, 128, 0, 0.3) 4px 4px;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Kaydırma çubuğunun genişliği */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #000; /* Arka plan rengi */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, lime, green); /* Yeşil lazer efekti */
+    border-radius: 10px; /* Yuvarlak köşeler */
+    box-shadow: 0 0 10px lime; /* Parlama efekti */
+  }
+  
+  /* Hover durumunda parlaklık */
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, limegreen, darkgreen);
+    box-shadow: 0 0 15px lime;
+  }

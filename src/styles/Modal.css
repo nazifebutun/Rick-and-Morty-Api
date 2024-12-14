@@ -47,8 +47,7 @@
     src: url('../get_schwifty.ttf') format('truetype'); 
 }
 .modal-content {
-    
-    background-color: rgba(5, 88, 109);
+    background-color: rgba(5, 88, 109, 0.9);
     width: 500px;
     max-width: 90%;
     max-height: 60%; /* Sabit yükseklik */
@@ -62,13 +61,17 @@
     color: #ffffff;      
     font-size: 18px;             
                   
-    text-shadow: 3px 3px 5px rgba(255, 203, 0, 50.0);
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
 }
 
 .modal-content h2 {
     font-family: 'RickAndMorty', sans-serif,bold;
     top: -20px; 
     padding: 1px 0;
-    text-shadow: 6px 6px 6px rgba(255, 203, 0, 50.0); 
+    text-shadow: rgba(50, 205, 50, 0.4) 3px 3px,
+    rgba(0, 128, 0, 0.3) 6px 6px,
+    rgba(50, 205, 50, 0.2) 9px 9px,
+    rgba(0, 128, 0, 0.1) 12px 12px,
+    rgba(50, 205, 50, 0.05) 15px 15px;
     font-size: 35px;
 }
