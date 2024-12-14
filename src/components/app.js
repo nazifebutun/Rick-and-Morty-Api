@@ -1,16 +1,19 @@
+//Nazife Bütün
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "./Modal"; 
 import "../styles/App.css";
 
 const App = () => {
+    // State definitions
     const [allCharacters, setAllCharacters] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1); 
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null); 
     const [selectedCharacter, setSelectedCharacter] = useState(null); 
     const [filter, setFilter] = useState(""); 
-    const [charactersPerPage, setCharactersPerPage] = useState(12); // Başlangıçta 12 karakter göster
+    const [charactersPerPage, setCharactersPerPage] = useState(12); // Default characters per page
 
     useEffect(() => {
         const fetchAllCharacters = async () => {
@@ -20,21 +23,24 @@ const App = () => {
                 let page = 1;
                 let totalPages = 1;
 
+                // Fetch the first page
                 const response = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`);
                 allCharactersTemp = response.data.results;
                 totalPages = response.data.info.pages;
 
+                // Fetch remaining pages
                 const fetchPromises = [];
                 for (let i = 2; i <= totalPages; i++) {
                     fetchPromises.push(axios.get(`https://rickandmortyapi.com/api/character?page=${i}`));
                 }
 
+                // Merge results from all pages
                 const results = await Promise.all(fetchPromises);
                 results.forEach((res) => {
                     allCharactersTemp = [...allCharactersTemp, ...res.data.results];
                 });
 
-                setAllCharacters(allCharactersTemp); 
+                setAllCharacters(allCharactersTemp); // Update state with all characters
                 setError(null);
             } catch (err) {
                 setError("Failed to fetch characters. Please try again.");
@@ -43,19 +49,25 @@ const App = () => {
             }
         };
 
-        fetchAllCharacters();
+        fetchAllCharacters(); // Fetch characters from the API
     }, []);
 
-    const filteredCharacters = allCharacters.filter((char) =>
-        char.name.toLowerCase().includes(filter.toLowerCase()) ||
-        char.status.toLowerCase().includes(filter.toLowerCase()) ||
-        char.species.toLowerCase().includes(filter.toLowerCase())
-    );
+    // Multi-filtering mechanism
+    const filteredCharacters = allCharacters.filter((char) => {
+        const terms = filter.toLowerCase().split(" ").filter(Boolean); // Split filter into terms
+        return terms.every((term) => 
+            char.name.toLowerCase().includes(term) ||
+            char.status.toLowerCase().includes(term) ||
+            char.species.toLowerCase().includes(term)
+        );
+    });
 
+    // Calculate characters for the current page
     const indexOfLastCharacter = currentPage * charactersPerPage;
     const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
     const currentCharacters = filteredCharacters.slice(indexOfFirstCharacter, indexOfLastCharacter);
 
+    // Calculate total pages
     const totalPages = Math.ceil(filteredCharacters.length / charactersPerPage);
 
     const handleNextPage = () => {
@@ -70,17 +82,17 @@ const App = () => {
         }
     };
 
-    // Sayfa boyutunu değiştirmek için fonksiyon
+    // Update characters per page
     const handlePageSizeChange = (e) => {
-        setCharactersPerPage(Number(e.target.value));  // Yeni sayfa boyutunu state'e set ediyoruz
-        setCurrentPage(1);  // Sayfa boyutu değiştiğinde, sayfayı 1. sayfaya sıfırlıyoruz
+        setCharactersPerPage(Number(e.target.value));
+        setCurrentPage(1); // Reset to first page after changing page size
     };
 
     return (
-        
         <div>
             <h1>Rick and Morty Characters</h1>
 
+            {/* Filter input */}
             <div className="filter-container">
                 <input
                     type="text"
@@ -88,24 +100,19 @@ const App = () => {
                     value={filter}
                     onChange={(e) => {
                         setFilter(e.target.value);
-                        setCurrentPage(1); // Filtreleme sonrası sayfayı sıfırlıyoruz
+                        setCurrentPage(1); // Reset to the first page after filtering
                     }}
                     className="filter-input"
                 />
             </div>
 
-            {/* Sayfa boyutunu değiştirmek için seçim kutusu */}
+            {/* Characters per page selection */}
             <div className="select">
                 <select 
                     value={charactersPerPage} 
-                    onChange={handlePageSizeChange} 
-                    style={{
-                        padding: "8px",
-                        borderRadius: "4px",
-                        border: "1px solid #ddd",
-                    }}
+                    onChange={handlePageSizeChange}
                 >
-                    <option value={4}>4 per page</option>
+                    <option value={8}>8 per page</option>
                     <option value={12}>12 per page</option>
                     <option value={36}>36 per page</option>
                     <option value={52}>52 per page</option>
@@ -117,6 +124,7 @@ const App = () => {
                 <p className="loading-text">Loading...</p>
             ) : currentCharacters.length > 0 ? (
                 <>
+                    {/* Display characters */}
                     <div className="character-grid">
                         {currentCharacters.map((char) => (
                             <div
@@ -132,6 +140,7 @@ const App = () => {
                         ))}
                     </div>
 
+                    {/* Pagination */}
                     <div className="pagination-container">
                         <button
                             onClick={() => setCurrentPage(1)}
