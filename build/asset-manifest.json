@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Rick-and-Morty-Api/static/css/main.2b53e26c.css",
+    "main.js": "/Rick-and-Morty-Api/static/js/main.20ea630a.js",
+    "static/media/background.jpg": "/Rick-and-Morty-Api/static/media/background.c35e618cd4bb1480e403.jpg",
+    "static/media/get_schwifty.ttf": "/Rick-and-Morty-Api/static/media/get_schwifty.c3d1dfc692e3547fed16.ttf",
+    "index.html": "/Rick-and-Morty-Api/index.html",
+    "main.2b53e26c.css.map": "/Rick-and-Morty-Api/static/css/main.2b53e26c.css.map",
+    "main.20ea630a.js.map": "/Rick-and-Morty-Api/static/js/main.20ea630a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b53e26c.css",
+    "static/js/main.20ea630a.js"
+  ]
+}
