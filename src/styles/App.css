@@ -236,3 +236,31 @@ select {
     background: linear-gradient(90deg, limegreen, darkgreen); /* Changes colors */
     box-shadow: 0 0 15px lime; /* Enhances glow */
 }
+/* Styles for the 'No characters found' message */
+.no-characters {
+    font-family: 'Arial Narrow Bold', sans-serif; 
+    font-size: 18px; 
+    color: #e20505; 
+    text-align: center; 
+    margin: 300px auto 0; 
+    padding: 10px; 
+    border: 1px solid #ffcccc; 
+    border-radius: 5px; 
+    background-color: #f3a8a8; 
+    width: 600px;
+    
+}
+
+/* Styles for the 'Loading...' message */
+.loading-text {
+    font-family: Arial, sans-serif; 
+    font-size: 16px; 
+    color: #4caf50; 
+    text-align: center; 
+    margin: 300px auto 0; 
+    padding: 10px; 
+    border: 1px solid #d7f2d7; /* Light green border */
+    border-radius: 5px; 
+    background-color: #f5fff5; 
+    width: 600px;
+}
