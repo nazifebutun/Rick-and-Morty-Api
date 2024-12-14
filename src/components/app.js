@@ -10,8 +10,7 @@ const App = () => {
     const [error, setError] = useState(null); 
     const [selectedCharacter, setSelectedCharacter] = useState(null); 
     const [filter, setFilter] = useState(""); 
-
-    const charactersPerPage = 8; 
+    const [charactersPerPage, setCharactersPerPage] = useState(12); // Başlangıçta 12 karakter göster
 
     useEffect(() => {
         const fetchAllCharacters = async () => {
@@ -71,9 +70,16 @@ const App = () => {
         }
     };
 
+    // Sayfa boyutunu değiştirmek için fonksiyon
+    const handlePageSizeChange = (e) => {
+        setCharactersPerPage(Number(e.target.value));  // Yeni sayfa boyutunu state'e set ediyoruz
+        setCurrentPage(1);  // Sayfa boyutu değiştiğinde, sayfayı 1. sayfaya sıfırlıyoruz
+    };
+
     return (
+        
         <div>
-            <h1>Rick and Morty<br />Characters</h1>
+            <h1>Rick and Morty Characters</h1>
 
             <div className="filter-container">
                 <input
@@ -86,6 +92,24 @@ const App = () => {
                     }}
                     className="filter-input"
                 />
+            </div>
+
+            {/* Sayfa boyutunu değiştirmek için seçim kutusu */}
+            <div className="select">
+                <select 
+                    value={charactersPerPage} 
+                    onChange={handlePageSizeChange} 
+                    style={{
+                        padding: "8px",
+                        borderRadius: "4px",
+                        border: "1px solid #ddd",
+                    }}
+                >
+                    <option value={4}>4 per page</option>
+                    <option value={12}>12 per page</option>
+                    <option value={36}>36 per page</option>
+                    <option value={52}>52 per page</option>
+                </select>
             </div>
 
             {error && <p className="error-message">{error}</p>}
