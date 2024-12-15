@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/Modal.css";
 
 const Modal = ({ character, onClose }) => {
-    const [episodes, setEpisodes] = useState([]); // Bölüm isimlerini tutar
+    const [episodes, setEpisodes] = useState([]); // Holds the episode information
 
-    // Episode URL'lerinden bölüm bilgilerini çek
+    // Fetch episode details from episode URLs
     useEffect(() => {
         const fetchEpisodes = async () => {
             if (character && character.episode.length > 0) {
@@ -13,7 +13,14 @@ const Modal = ({ character, onClose }) => {
                         fetch(url).then((res) => res.json())
                     );
                     const results = await Promise.all(fetchPromises);
-                    setEpisodes(results.map((episode) => episode.name)); // Sadece bölüm isimlerini al
+
+                    // Extract episode names and numbers
+                    const episodeDetails = results.map((episode) => {
+                        const episodeNumber = episode.url.split("/").pop(); // Extract the episode number from the URL
+                        return { name: episode.name, number: episodeNumber };
+                    });
+
+                    setEpisodes(episodeDetails);
                 } catch (error) {
                     console.error("Failed to fetch episodes:", error);
                 }
@@ -23,7 +30,7 @@ const Modal = ({ character, onClose }) => {
         fetchEpisodes();
     }, [character]);
 
-    if (!character) return null; // Eğer karakter seçili değilse, modal gösterilmez
+    if (!character) return null; // Do not display the modal if no character is selected
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -42,7 +49,7 @@ const Modal = ({ character, onClose }) => {
                     <ul>
                         {episodes.map((episode, index) => (
                             <li key={index}>
-                                Episode {index + 1}: {episode}
+                                Episode {episode.number}: {episode.name}
                             </li>
                         ))}
                     </ul>

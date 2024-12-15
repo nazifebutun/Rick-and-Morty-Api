@@ -1,77 +1,83 @@
+/* === Modal Overlay === */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Yarı saydam arka plan */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-in-out; /* Soft açılma efekti */
+    z-index: 1000; /* Ensures modal is on top */
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
 }
 
-
+/* === Close Button === */
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
+    background: none; /* Transparent background */
     border: none;
-    font-size: 24px;
-    cursor: pointer;
+    font-size: 24px; /* Larger font size for visibility */
+    cursor: pointer; /* Change cursor to pointer */
 }
 
+/* === Fade-In Animation === */
 @keyframes fadeIn {
     from {
-        background: rgba(0, 0, 0, 0);
+        background: rgba(0, 0, 0, 0); /* Fully transparent */
     }
     to {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.6); /* Semi-transparent */
     }
 }
 
+/* === Slide-Up Animation === */
 @keyframes slideUp {
     from {
-        transform: translateY(30%);
-        opacity: 0;
+        transform: translateY(30%); /* Start with a slight vertical offset */
+        opacity: 0; /* Fully transparent */
     }
     to {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateY(0); /* Reset position */
+        opacity: 1; /* Fully visible */
     }
 }
+
+/* === Custom Font === */
 @font-face {
     font-family: 'RickAndMorty';
-    src: url('../get_schwifty.ttf') format('truetype'); 
-}
-.modal-content {
-    background-color: rgba(5, 88, 109, 0.9);
-    width: 500px;
-    max-width: 90%;
-    max-height: 60%; /* Sabit yükseklik */
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow-y: auto; 
-    animation: slideUp 0.4s ease-in-out; 
-    font-family: 'monospace';
-    color: #ffffff;      
-    font-size: 18px;             
-                  
-    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5);
+    src: url('../get_schwifty.ttf') format('truetype'); /* Custom Rick and Morty font */
 }
 
+/* === Modal Content === */
+.modal-content {
+    background-color: rgba(5, 88, 109, 0.9); /* Semi-transparent dark teal background */
+    width: 500px; 
+    max-width: 90%; 
+    max-height: 60%; 
+    border-radius: 10px; 
+    padding: 20px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    animation: slideUp 0.4s ease-in-out; /* Smooth slide-up effect */
+    font-family: 'monospace'; 
+    color: #ffffff; 
+    font-size: 18px; 
+    text-shadow: 3px 3px 3px rgba(255, 203, 0, 0.5); 
+}
+/* === Modal Header (H2) === */
 .modal-content h2 {
-    font-family: 'RickAndMorty', sans-serif,bold;
+    font-family: 'RickAndMorty', sans-serif, bold; 
     top: -20px; 
     padding: 1px 0;
-    text-shadow: rgba(50, 205, 50, 0.4) 3px 3px,
+    text-shadow: rgba(50, 205, 50, 0.4) 3px 3px, 
     rgba(0, 128, 0, 0.3) 6px 6px,
     rgba(50, 205, 50, 0.2) 9px 9px,
     rgba(0, 128, 0, 0.1) 12px 12px,
     rgba(50, 205, 50, 0.05) 15px 15px;
-    font-size: 35px;
+    font-size: 35px; 
 }
